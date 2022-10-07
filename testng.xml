@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Users/Atif/IdeaProjects/TestNGEcommerceApp"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods">
+    <test verbose="2" preserve-order="true" name="Place Order Test" thread-count="5">
+        <classes>
+            <class name="learningPkg.OrderTest"/>
+        </classes>
+    </test>
+
+    <test verbose="2" preserve-order="true" name="Login Validations Test">
+        <classes>
+            <class name="learningPkg.ErrorValidations"/>
+        </classes>
+    </test>
+</suite>

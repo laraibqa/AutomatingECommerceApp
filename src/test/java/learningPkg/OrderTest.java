@@ -1,6 +1,7 @@
 package learningPkg;
 
 import PageObjects.*;
+import TestComponents.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
@@ -8,22 +9,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.internal.Debug;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
-public class OrderTest {
-    public static void main(String[] args) {
+public class OrderTest extends BaseTest {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+    @Test
+    public void placeOrder() throws IOException {
+//        WebDriver driver = initializeDriver();
         String productName = "ZARA COAT 3";
         String userEmail = "laraibriaz14@gmail.com";
         String userPassword = "Lara@123";
@@ -31,17 +31,15 @@ public class OrderTest {
         String country = "Pakistan";
         String expectedMsg = "THANKYOU FOR THE ORDER.";
 
-        driver.get("https://rahulshettyacademy.com/client");
-
 //        CREATING OBJECTS OF ALL PAGES
-        LandingPage landingPage = new LandingPage(driver);
+//        LandingPage landingPage = new LandingPage(driver);
         ProductCatalogue productCatalogue = new ProductCatalogue(driver);
         CartPage cartPage = new CartPage(driver);
         CheckOutPage checkOutPage = new CheckOutPage(driver);
         ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 
 //        NAVIGATING TO LANDING PAGE AND LOGGING IN
-        landingPage.goTo(url);
+//        landingPage.goTo(url);
         landingPage.loginApplication(userEmail,userPassword);
 
 //        ADDING PRODUCT TO CART

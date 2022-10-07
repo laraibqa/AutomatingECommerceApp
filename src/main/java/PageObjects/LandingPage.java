@@ -1,14 +1,15 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
+import ReUsableComponents.AbstractComponents;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LandingPage {
+public class LandingPage extends AbstractComponents {
     WebDriver driver;
     public  LandingPage(WebDriver driver){
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
@@ -26,6 +27,9 @@ public class LandingPage {
     @FindBy(id="login")
     WebElement loginBtn;
 
+    @FindBy(css = "#toast-container")
+    WebElement errorMsg;
+
     public void loginApplication(String email, String password){
         userEmail.sendKeys(email);
         userPassword.sendKeys(password);
@@ -36,5 +40,9 @@ public class LandingPage {
         driver.get(url);
     }
 
+    public String getErrorMsg(){
+        waitForWebElementToAppear(errorMsg);
+        return errorMsg.getText();
+    }
 
 }
